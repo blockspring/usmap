@@ -1,0 +1,114 @@
+{
+  "appearance": {
+    "colors": {
+      "readable": "Colors",
+      "category": "Colors",
+      "placeholder": null,
+      "values": ["#EDF8E9", "#BAE4B3", "#74C476", "#31A354", "#006D2C"],
+      "description": "Sets the colors used in the graph. Each color will be used for 1 series. If you specify less colors than series, colors will be repeated.",
+      "type": "multiple_colors_arbitrary"
+    },
+    "transition_delay": {
+      "readable": "Transition delay",
+      "category": "Animation",
+      "placeholder": 0,
+      "values": 0,
+      "description": "Delay before the map is colorized. Specified in milliseconds (1,000 per second).",
+      "type": "number"
+    },
+    "transition_duration": {
+      "readable": "Transition duration",
+      "category": "Animation",
+      "placeholder": 100,
+      "values": 100,
+      "description": "Time spent fading in colors on the map. Specified in milliseconds (1,000 per second).",
+      "type": "number"
+    },
+    "tooltips": {
+      "readable": "Tooltips",
+      "category": "Highlight",
+      "placeholder": true,
+      "values": true,
+      "description": "Show tooltips over states on hover.",
+      "type": "boolean"
+    },
+    "undefined_color": {
+      "readable": "Undefined area color",
+      "category": "Colors",
+      "placeholder": "#DDE3F8",
+      "values": "#DDE3F8",
+      "description": "The color for states not included in your dataset. (Alasks in example).",
+      "type": "color"
+    },
+    "border_color": {
+      "readable": "Border color",
+      "category": "Colors",
+      "placeholder": "#98C29B",
+      "values": "#98C29B",
+      "description": "The border color surrounding states.",
+      "type": "color"
+    },
+    "tooltip_format": {
+      "readable": "Tooltip format",
+      "category": "Highlight",
+      "placeholder": ",.2s",
+      "values": ",.2s",
+      "description": "Sets the text format for tooltips.<br/> <a href='https://github.com/mbostock/d3/wiki/Formatting' target='_blank'>See formats here.</a>",
+      "type": "text_format"
+    },
+    "scale": {
+      "readable": "Scale",
+      "category": "General",
+      "placeholder": null,
+      "values": null,
+      "description": "Sets the scale for projection.",
+      "type": "number"
+    },
+    "zoom": {
+      "readable": "Zoom and pan",
+      "category": "Zoom",
+      "placeholder": true,
+      "values": true,
+      "description": "Zoom and pan enable for map.",
+      "type": "boolean"
+    },
+    "highlight": {
+      "readable": "Highlight",
+      "category": "Highlight",
+      "placeholder": true,
+      "values": true,
+      "description": "Lightens each state on mouse over.",
+      "type": "boolean"
+    }
+  },
+  "roles": {
+    "state":
+      {
+        "allows_multiple": false,
+        "required": true,
+        "types": ["string"],
+        "sample_columns": ["state"],
+        "description":"Matches the state name."
+      },
+    "value":
+      {
+        "allows_multiple": false,
+        "required": true,
+        "types": ["number"],
+        "sample_columns": ["value"],
+        "description":"Creates a heatmap on these values."
+      },
+    "grafly_dropdowns": {
+       "allows_multiple": true,
+       "required": false,
+       "types": [
+         "string",
+         "date",
+         "number"
+       ],
+       "sample_columns": [
+       ],
+       "description": "dropdowns."
+    }
+  }
+}

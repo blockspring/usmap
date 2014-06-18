@@ -1,0 +1,29 @@
+#tooltip {
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 0px 0px;
+  margin: 0px 0px;
+  background-color: white;
+  /*-webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;*/
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  text-align: center;
+}
+
+#tooltip div#tooltitle {
+  padding:1px 10px;
+  background-color: rgba(0,0,0,0.1);
+}
+
+#tooltip div#tooltext {
+  padding:1px 10px;
+}
+
+#tooltip div p {
+  margin: 5px 0;
+}
