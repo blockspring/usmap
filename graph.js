@@ -15,8 +15,8 @@ var graph = {
 
       $(svgInput).empty();
 
-      var width = $(window).width();
-      var height = $(window).height();
+      var width = $(document).width();
+      var height = $(document).height();
 
       if (Block.vars.csv.columnRoleMap.grafly_dropdowns.length != 0){
         height = height - 50;
@@ -36,15 +36,6 @@ var graph = {
           .scaleExtent([1, 8])
           .on("zoom", zoomable))
           .on("dblclick.zoom", null);
-
-        function zoomable() {
-          trans=d3.event.translate;
-          scale=d3.event.scale;
-
-          graph.svg.attr("transform",
-              "translate(" + trans + ")"
-              + " scale(" + scale + ")");
-        }
       }
 
       graph.svg = graph.svg
@@ -166,6 +157,14 @@ var graph = {
           }
         })
       });
+      function zoomable() {
+        trans=d3.event.translate;
+        scale=d3.event.scale;
+
+        graph.svg.attr("transform",
+            "translate(" + trans + ")"
+            + " scale(" + scale + ")");
+      }
     },
     redraw: function(){    
       graph.draw();
