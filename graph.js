@@ -84,12 +84,78 @@ var graph = {
         .range(Block.vars.colors);
 
       d3.json("us-states.json", function (json) {
+
+       var stateMap = {
+          AL: "Alabama",
+          AK: "Alaska",
+          AZ: "Arizona",
+          AR: "Arkansas",
+          CA: "California",
+          CO: "Colorado",
+          CT: "Connecticut",
+          DE: "Delaware",
+          FL: "Florida",
+          GA: "Georgia",
+          HI: "Hawaii",
+          ID: "Idaho",
+          IL: "Illinois",
+          IN: "Indiana",
+          IA: "Iowa",
+          KS: "Kansas",
+          KY: "Kentucky",
+          LA: "Louisiana",
+          ME: "Maine",
+          MD: "Maryland",
+          MA: "Massachusetts",
+          MI: "Michigan",
+          MN: "Minnesota",
+          MS: "Mississippi",
+          MO: "Missouri",
+          MT: "Montana",
+          NE: "Nebraska",
+          NV: "Nevada",
+          NH: "New Hampshire",
+          NJ: "New Jersey",
+          NM: "New Mexico",
+          NY: "New York",
+          NC: "North Carolina",
+          ND: "North Dakota",
+          OH: "Ohio",
+          OK: "Oklahoma",
+          OR: "Oregon",
+          PA: "Pennsylvania",
+          RI: "Rhode Island",
+          SC: "South Carolina",
+          SD: "South Dakota",
+          TN: "Tennessee",
+          TX: "Texas",
+          UT: "Utah",
+          VT: "Vermont",
+          VA: "Virginia",
+          WA: "Washington",
+          WV: "West Virginia",
+          WI: "Wisconsin",
+          WY: "Wyoming",
+          AS: "American Samoa",
+          DC: "District of Columbia",
+          FM: "Federated States of Micronesia",
+          GU: "Guam",
+          MH: "Marshall Islands",
+          MP: "Northern Mariana Islands",
+          PW: "Palau",
+          PR: "Puerto Rico",
+          VI: "Virgin Islands"
+        };
+
         for (var i = 0; i < Block.vars.csv.data.length; i++) {
           var dataState = Block.vars.csv.data[i][Block.vars.csv.columnRoleMap.state[0]];
           var dataValue = parseFloat(Block.vars.csv.data[i][Block.vars.csv.columnRoleMap.value[0]]);
           for (var j = 0; j < json.features.length; j++) {
             var jsonState = json.features[j].properties.name;
-            if (dataState == jsonState) {
+            if (dataState.replace(/\./g,"").toUpperCase() == jsonState.replace(/\./g,"").toUpperCase()) {
+              json.features[j].properties.value = dataValue;
+              break;
+            } else if ((stateMap[dataState.replace(/\./g,"").toUpperCase()]) && (stateMap[dataState.replace(/\./g,"").toUpperCase()].toUpperCase()) && (stateMap[dataState.replace(/\./g,"").toUpperCase()].toUpperCase() == jsonState.replace(/\./g,"").toUpperCase())) {
               json.features[j].properties.value = dataValue;
               break;
             }
