@@ -88,7 +88,8 @@
         "required": true,
         "types": ["string"],
         "sample_columns": ["state"],
-        "description":"Matches the state name."
+        "description":"Matches the state name.",
+        "default_aggregation":"pivot_by"
       },
     "value":
       {
@@ -96,7 +97,8 @@
         "required": true,
         "types": ["number"],
         "sample_columns": ["value"],
-        "description":"Creates a heatmap on these values."
+        "description":"Creates a heatmap on these values.",
+        "default_aggregation":"sum"
       },
     "grafly_dropdowns": {
        "allows_multiple": true,
