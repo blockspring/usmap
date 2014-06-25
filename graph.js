@@ -150,13 +150,21 @@ var graph = {
         for (var i = 0; i < Block.vars.csv.data.length; i++) {
           var dataState = Block.vars.csv.data[i][Block.vars.csv.columnRoleMap.state[0]];
           var dataValue = parseFloat(Block.vars.csv.data[i][Block.vars.csv.columnRoleMap.value[0]]);
+          var dataText;
+          if (Block.vars.csv.columnRoleMap.text[0]){
+             dataText = Block.vars.csv.columnMetaData[Block.vars.csv.columnRoleMap.text[0]].reverseFormatLibrary[Block.vars.csv.data[i][Block.vars.csv.columnRoleMap.text[0]]];
+          } else {
+            dataText = Block.vars.csv.columnRoleMap.value[0] + ' : ' + d3.format(Block.vars.tooltip_format)(dataValue);
+          }
           for (var j = 0; j < json.features.length; j++) {
             var jsonState = json.features[j].properties.name;
             if (dataState.replace(/\./g,"").toUpperCase() == jsonState.replace(/\./g,"").toUpperCase()) {
               json.features[j].properties.value = dataValue;
+              json.features[j].properties.text = dataText;
               break;
             } else if ((stateMap[dataState.replace(/\./g,"").toUpperCase()]) && (stateMap[dataState.replace(/\./g,"").toUpperCase()].toUpperCase()) && (stateMap[dataState.replace(/\./g,"").toUpperCase()].toUpperCase() == jsonState.replace(/\./g,"").toUpperCase())) {
               json.features[j].properties.value = dataValue;
+              json.features[j].properties.text = dataText;
               break;
             }
           }
@@ -202,7 +210,7 @@ var graph = {
               d3.select(graph.selectors.tooltip_title)
                 .text(d.properties.name);
               d3.select(graph.selectors.tooltip_text)
-                .text(Block.vars.csv.columnRoleMap.value[0] + ' : ' + d3.format(Block.vars.tooltip_format)(d.properties.value));
+                .text(d.properties.text);
 
               d3.select(graph.selectors.tooltip_div).classed("hidden", false);
             }

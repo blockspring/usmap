@@ -100,6 +100,14 @@
         "description":"Creates a heatmap on these values.",
         "default_aggregation":"sum"
       },
+    "text":
+      {
+        "allows_multiple": false,
+        "required": false,
+        "types": ["string, date, number"],
+        "sample_columns": [],
+        "description":"Sets text for the heatmap."
+      },
     "grafly_dropdowns": {
        "allows_multiple": true,
        "required": false,
