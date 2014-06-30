@@ -100,11 +100,11 @@
         "description":"Creates a heatmap on these values.",
         "default_aggregation":"sum"
       },
-    "text":
+    "text_metrics":
       {
-        "allows_multiple": false,
+        "allows_multiple": true,
         "required": false,
-        "types": ["string, date, number"],
+        "types": ["number"],
         "sample_columns": [],
         "description":"Sets text for the heatmap."
       },

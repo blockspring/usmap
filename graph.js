@@ -151,8 +151,14 @@ var graph = {
           var dataState = Block.vars.csv.data[i][Block.vars.csv.columnRoleMap.state[0]];
           var dataValue = parseFloat(Block.vars.csv.data[i][Block.vars.csv.columnRoleMap.value[0]]);
           var dataText;
-          if (Block.vars.csv.columnRoleMap.text[0]){
-             dataText = Block.vars.csv.columnMetaData[Block.vars.csv.columnRoleMap.text[0]].reverseFormatLibrary[Block.vars.csv.data[i][Block.vars.csv.columnRoleMap.text[0]]];
+          if (Block.vars.csv.columnRoleMap.text_metrics.length > 0){
+            var dataTextArray = [];
+            Block.vars.csv.columnRoleMap.text_metrics.forEach(function(label){
+              var output = Block.vars.csv.columnMetaData[label].reverseFormatLibrary[Block.vars.csv.data[i][label]] != undefined ? Block.vars.csv.columnMetaData[label].reverseFormatLibrary[Block.vars.csv.data[i][label]] : Block.vars.csv.data[i][label];
+              output = d3.format(Block.vars.tooltip_format)(output)
+              dataTextArray.push(label + " - " + output);
+            });
+             dataText = dataTextArray.join(", ");
           } else {
             dataText = Block.vars.csv.columnRoleMap.value[0] + ' : ' + d3.format(Block.vars.tooltip_format)(dataValue);
           }
