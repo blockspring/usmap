@@ -106,7 +106,8 @@
         "required": false,
         "types": ["number"],
         "sample_columns": [],
-        "description":"Sets text for the heatmap."
+        "description":"Sets text for the heatmap.",
+        "default_aggregation":"sum"
       },
     "grafly_dropdowns": {
        "allows_multiple": true,
