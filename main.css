@@ -5,9 +5,7 @@
   padding: 0px 0px;
   margin: 0px 0px;
   background-color: white;
-  /*-webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;*/
+
   -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
@@ -15,15 +13,23 @@
   text-align: center;
 }
 
-#tooltip div#tooltitle {
-  padding:1px 10px;
-  background-color: rgba(0,0,0,0.1);
+#tooltip {
+  font-family: sans-serif;
+  font-size: 12px;
+  text-align: left;
+  padding: 11px 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
-#tooltip div#tooltext {
-  padding:1px 10px;
+#tooltip #tooltitle {
+  background-color: white;
+  margin-bottom: 3px;
 }
 
-#tooltip div p {
-  margin: 5px 0;
+#tooltip #tooltext {
+}
+
+#value {
+  font-weight: bold;
 }

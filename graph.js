@@ -51,18 +51,12 @@ var graph = {
       var w = $(svgInput).width();
       var h = $(svgInput).height();
 
-      var minLength = Math.min(w, h);
-
       var scaleVar;
       
       if (Block.vars.scale) {
         scaleVar = Block.vars.scale;
       } else {
-        if (minLength == w){
-         scaleVar=700*(h/700); 
-        } else {
-          scaleVar=700*(h/500); 
-        }
+        scaleVar = w < (h * 1.5) ? w * 1.3 : h * 2.1;
       }
 
       var projection = d3.geo.albersUsa()
@@ -151,6 +145,7 @@ var graph = {
           var dataState = Block.vars.csv.data[i][Block.vars.csv.columnRoleMap.state[0]];
           var dataValue = parseFloat(Block.vars.csv.data[i][Block.vars.csv.columnRoleMap.value[0]]);
           var dataText;
+
           if (Block.vars.csv.columnRoleMap.text_metrics.length > 0){
             var dataTextArray = [];
             Block.vars.csv.columnRoleMap.text_metrics.forEach(function(label){
@@ -160,8 +155,9 @@ var graph = {
             });
              dataText = dataTextArray.join(", ");
           } else {
-            dataText = Block.vars.csv.columnRoleMap.value[0] + ' : ' + d3.format(Block.vars.tooltip_format)(dataValue);
+            dataText = Block.vars.csv.columnRoleMap.value[0];
           }
+
           for (var j = 0; j < json.features.length; j++) {
             var jsonState = json.features[j].properties.name;
             if (dataState.replace(/\./g,"").toUpperCase() == jsonState.replace(/\./g,"").toUpperCase()) {
@@ -190,6 +186,7 @@ var graph = {
               return Block.vars.undefined_color;
             }
           })
+          .style('stroke-width', 0.25)
           .style('stroke', Block.vars.border_color);
         
         var all_paths = graph.svg.selectAll("path")
@@ -213,16 +210,21 @@ var graph = {
               d3.select(graph.selectors.tooltip_div)
                 .style("left", xPosition + "px")
                 .style("top", yPosition + "px");
+
               d3.select(graph.selectors.tooltip_title)
                 .text(d.properties.name);
+
               d3.select(graph.selectors.tooltip_text)
                 .text(d.properties.text);
+
+              d3.select("#value")
+                .text(d.properties.value);
 
               d3.select(graph.selectors.tooltip_div).classed("hidden", false);
             }
 
             if (Block.vars.highlight){
-              d3.select(this).style('opacity','0.3')
+              d3.select(this).style('opacity','0.6')
             }
           })
 
@@ -238,8 +240,8 @@ var graph = {
         })
       });
       function zoomable() {
-        trans=d3.event.translate;
-        scale=d3.event.scale;
+        trans = d3.event.translate;
+        scale = d3.event.scale;
 
         graph.svg.attr("transform",
             "translate(" + trans + ")"

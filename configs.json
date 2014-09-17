@@ -87,7 +87,7 @@
         "allows_multiple": false,
         "required": true,
         "types": ["string"],
-        "sample_columns": ["state"],
+        "sample_columns": ["State"],
         "description":"Matches the state name.",
         "default_aggregation":"pivot_by"
       },
@@ -96,7 +96,7 @@
         "allows_multiple": false,
         "required": true,
         "types": ["number"],
-        "sample_columns": ["value"],
+        "sample_columns": ["% Democrat"],
         "description":"Creates a heatmap on these values.",
         "default_aggregation":"sum"
       },
